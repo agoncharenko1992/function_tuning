@@ -14,7 +14,7 @@ from transformers import BitsAndBytesConfig
 from trl import DataCollatorForCompletionOnlyLM
 from trl import SFTTrainer
 
-from argument_parsing import argument_parsiong
+from argument_parsing import function_calling_argument_parsing
 from dataset.prompt_procession import formatting_prompts_func
 
 
@@ -134,19 +134,20 @@ def main(total_train_steps, model_path, checkpoint_name, neftune_alpha, restore)
         args=train_args,
         compute_metrics=compute_metrics,
         preprocess_logits_for_metrics=preprocess_logits_for_metrics,
-        neftune_noise_alpha=neftune_alpha,
+        #neftune_noise_alpha=neftune_alpha,
         data_collator=DataCollatorForCompletionOnlyLM(
             tokenizer=tokenizer,
             response_template=response_template_ids,
         )
     )
 
-    trainer.train(resume_from_checkpoint=restore)
+    #trainer.train(resume_from_checkpoint=restore)
+    trainer.train()
     return
 
 
 if __name__ == "__main__":
-    args = argument_parsiong()
+    args = function_calling_argument_parsing()
 
     main(
         total_train_steps=args.total_train_steps,
