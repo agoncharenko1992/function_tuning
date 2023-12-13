@@ -150,13 +150,6 @@ trash*
 *.jpg
 *.jpeg
 *.png
-!documentation/source/ENOT_logo-green.png
-!tests/logic_tests/checkpoints/*.pth
-!tests/phases_tests/checkpoints/*.pth
-!tests/pruning_tests/onnx/*.onnx
-
-!3rdparty/**
-src/enot/protection/*.c
 *.db
 
 # Pyright config file
